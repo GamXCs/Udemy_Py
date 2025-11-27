@@ -12,4 +12,13 @@ char = string.punctuation  # Uses built-in function holding all punctuation
 dict = {c: None for c in char}  # Makes a dictionary mapping each char to None
 tab = str.maketrans(dict)
 result = fileContents.lower().translate(tab).split()
-print(result)
+
+# Build a dictionary with a word count frequency
+word_count = 0
+count_dict = {}
+for word in result:
+    if word in count_dict:
+        count_dict[word] += 1
+    else:
+        count_dict[word] = 1
+print(count_dict)
