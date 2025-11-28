@@ -14,11 +14,21 @@ tab = str.maketrans(dict)
 result = fileContents.lower().translate(tab).split()
 
 # Build a dictionary with a word count frequency
-word_count = 0
+
 count_dict = {}
 for word in result:
     if word in count_dict:
         count_dict[word] += 1
     else:
         count_dict[word] = 1
-print(count_dict)
+
+# Count total number of words
+wordCount = len(result)
+print(f"The total number of words: {wordCount}\n")
+
+# Count total number of unique words (Number of keys)
+uniqueWords = len(count_dict)
+print(f"Total number of unique words: {uniqueWords}\n")
+
+# Count most common word
+print(max(count_dict, key=lambda mostCommon: count_dict[mostCommon]))
