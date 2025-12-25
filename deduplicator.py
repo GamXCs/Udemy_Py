@@ -39,8 +39,7 @@ def deduplication(data):
 
 # print(deduplication(test_data))
 
-# Use 2 containers
-#
+
 data = [1, 2, 2, 3, 1, "a", "a", (1, 2), (1, 2)]
 
 
