@@ -23,20 +23,37 @@ def remove_item(item, quantity):
     if item not in inventory:
         print(f"{item} is not in inventory.\n")
         return
+
+    # Get current number of item in inventroy
     current = inventory[item]["quantity"]
 
+    # Check that inventory will not be negative
     if quantity > current:
         inventory[item]["quantity"] = 0
     else:
         inventory[item]["quantity"] -= quantity
 
 
-# def remove_item(item):
-#     return
+# function to update quantity
+def update_quantity(item, quantity):
+    if item not in inventory:
+        print(f"{item} is not in inventory.\n")
+        return
+
+    if quantity < 0:
+        quantity = 0
+
+    inventory[item]["quantity"] = quantity
 
 
 # function to compute total inventory value
-# function to update quantity
+def total_inventory():
+    total = 0
+    for item, data in inventory.items():
+        quantity = data["quantity"]
+        price = data["price"]
+        total += quantity * price
+    return total
 
 
 # Test add_item function
@@ -44,7 +61,8 @@ def remove_item(item, quantity):
 # add_item("apple", 2, 0.75)
 # pprint(inventory)
 
-remove_item("apple", 3)  # normal case
-remove_item("apple", 50)  # should stop at 0
-remove_item("marker", 2)  # missing item case (message)
-pprint(inventory)
+# remove_item("apple", 3)  # normal case
+# remove_item("apple", 50)  # should stop at 0
+# remove_item("marker", 2)  # missing item case (message)
+
+print(f"The total inventory is valued at {total_inventory():.2f}")
