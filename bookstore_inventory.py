@@ -53,3 +53,12 @@ def total_book_value():
         price = data["price"]
         total += quantity * price
     return total
+
+
+# Store books in a list for formatting purposes
+def low_stock_books(threshold):
+    list_of_books = []
+    for book, data in book_inventory.items():
+        if data["quantity"] < threshold:
+            list_of_books.append(book)
+    return list_of_books
