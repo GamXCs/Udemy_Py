@@ -1,8 +1,10 @@
 __pycache__/
-*.log
-*.tmp
-*.DS_Store
-.env
-.vscode/
-.idea/
-
+*.pyc
+.venv/
+.DS_Store
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+dist/
+build/
+*.egg-info/
