@@ -1,8 +1,7 @@
-# import csv
-
 # """ Create function to open file, read lines, strip whitespace,
 # ignore blank lines, convert to float, handle type and/or value errors
 # return list of floats"""
+from summary_lib import summarize
 
 
 def load_numbers(filename):
@@ -19,27 +18,28 @@ def load_numbers(filename):
                 continue
 
             try:
-                line = float(cleaned)
+                value = float(cleaned)
             except ValueError:
                 raise TypeError("Invalid value")
 
-            numbers_from_csv.append(line)
+            numbers_from_csv.append(value)
 
     return numbers_from_csv
 
 
 def main():
-    # Step 1: load data or define inputs
-    pass
+    try:
+        nums = load_numbers("data.csv")
+        summary = summarize(nums)
 
-    # Step 2: process
-    pass
-
-    # Step 3: output results
-    pass
-
-    filename = "data.csv"
-    print(load_numbers(filename))
+        print("Summary Report")
+        print("-" * 20)
+        for key, value in summary.items():
+            print(f"{key}:{value}")
+    except Exception as e:
+        print(f"Error: {e}")
+    # filename = "data.csv"
+    # print(load_numbers(filename))
 
 
 if __name__ == "__main__":
