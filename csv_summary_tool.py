@@ -1,6 +1,10 @@
 # """ Create function to open file, read lines, strip whitespace,
 # ignore blank lines, convert to float, handle type and/or value errors
 # return list of floats"""
+
+# Update to take sysarg so user can pass csv with CLI
+import sys
+
 from summary_lib import summarize
 
 
@@ -28,8 +32,14 @@ def load_numbers(filename):
 
 
 def main():
+    # add sys arg check
+    if len(sys.argv) != 2:
+        print("Usage: python3 csv_summary_tool.py <filename>")
+        return
+
+    filename = sys.argv[1]
     try:
-        nums = load_numbers("data.csv")
+        nums = load_numbers(filename)
         summary = summarize(nums)
 
         print("Summary Report")
