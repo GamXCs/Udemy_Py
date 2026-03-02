@@ -1,5 +1,4 @@
 import csv
-from collections import defaultdict
 
 with open("csv_practice.csv", mode="r") as f:
     csv_file = csv.reader(f)

@@ -4,15 +4,17 @@ from collections import defaultdict
 # initialize defautdict
 word_count = defaultdict(int)
 
-with open("csv_practice.csv", mode="r") as file:
-    csv_words = csv.reader(file)
-    next(csv_words)
+with open("shakespeare.csv", mode="r") as file:
+    # csv_words = csv.reader(file)
+    # next(csv_words)
+    for line in file:
+        words = line.lower().split()
 
-    for lines in csv_words:
-        words = lines[2].lower().split()
+        # for lines in csv_words:
+        #     words = lines.lower().split()
 
         for word in words:
-            clean_word = word.strip("!,.?:;")
+            clean_word = word.strip("!,.?:;--'")
 
             word_count[clean_word] += 1
 
