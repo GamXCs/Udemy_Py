@@ -5,6 +5,11 @@ if user guess correctly, program exits
 otherwise, try again
 """
 
+"""second iteration do error handling for bad input"""
+# numbers entered less than 0
+# floats
+# words
+
 import random
 
 
@@ -15,7 +20,17 @@ def guessing_game():
     print(target)
 
     while True:
-        user_guess = int(input("Guess a number from 0 - 100: "))
+        try:
+            user_guess = int(input("Guess a number from 0 - 100: "))
+
+            if user_guess > 100 or user_guess < 0:
+                print("Number must be between 0 - 100")
+                continue
+
+        except ValueError:
+            print(
+                "Entry cannot be a decimal or letter. Must be a non-negative integer between 0 - 100."
+            )
 
         if user_guess == target:
             print(f"Just Right! The answer was {user_guess}")
