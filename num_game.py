@@ -18,8 +18,9 @@ def guessing_game():
     number = random.randint(0, 100)
     target = number
     print(target)
+    num_guess = 3
 
-    while True:
+    while num_guess > 0:
         try:
             user_guess = int(input("Guess a number from 0 - 100: "))
 
@@ -31,6 +32,8 @@ def guessing_game():
             print(
                 "Entry cannot be a decimal or letter. Must be a non-negative integer between 0 - 100."
             )
+
+        num_guess -= 1
 
         if user_guess == target:
             print(f"Just Right! The answer was {user_guess}")
