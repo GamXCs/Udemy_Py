@@ -1,7 +1,18 @@
-from hmac import digest_size
+TODO: #implement parse_number(): make function that decides what type and choose
 
 
-def int_parser(string):
+
+class ParseNumberError(ValueError):
+    """Raised when a string cannot be parsed as a number."""
+
+    pass
+
+
+# renamed the functions to follow common API convention:
+# action_object
+
+
+def parse_int(string):
 
     # validate the string
     # strip whitespace, detect optional sign, ensure characters are digits
@@ -11,7 +22,7 @@ def int_parser(string):
 
     # check if string is empty
     if not s:
-        raise ValueError("String is empty")
+        raise ParseNumberError("Input string is empty")
 
     # check for sign and remove it
     sign = 1
@@ -22,22 +33,22 @@ def int_parser(string):
 
     # if not s is more pythonic than if len(s) == 0
     if not s:
-        raise ValueError("String is empty")
+        raise ParseNumberError("Input string is empty")
 
     for char in s:
         if not char.isdigit():
-            raise ValueError("String must only containbe numbers")
+            raise ParseNumberError("String must only contain numbers")
 
     return sign * int(s)
 
 
 # -----------Test Cases--------------
-print(int_parser("     -123    "))
-print(int_parser("     23    "))
-print(int_parser("     +3123    "))
+print(parse_int("     -123    "))
+print(parse_int("     23    "))
+print(parse_int("     +3123    "))
 
 
-def float_parser(string):
+def parse_float(string):
     # validate the string
     # strip whitespace, detect optional sign, ensure characters are digits
     # convert to int, apply sign
@@ -46,7 +57,7 @@ def float_parser(string):
 
     # check if string is empty
     if not s:
-        raise ValueError("String is empty")
+        raise ParseNumberError("String is empty")
 
     # check for sign and remove it
     sign = 1
@@ -57,7 +68,7 @@ def float_parser(string):
 
     # if not s is more pythonic than if len(s) == 0
     if not s:
-        raise ValueError("String is empty")
+        raise ParseNumberError("String is empty")
 
     dot_count = 0
     digit_count = 0
@@ -68,18 +79,18 @@ def float_parser(string):
         elif char == ".":
             dot_count += 1
             if dot_count > 1:
-                raise ValueError("String can only contain one decimal")
+                raise ParseNumberError("Multiple decimal points found")
         else:
-            raise ValueError("Invalid input")
+            raise ParseNumberError("Invalid input")
 
     if digit_count == 0:
-        raise ValueError("Float must contain at least one digit")
+        raise ParseNumberError("Float must contain at least one digit")
 
     return sign * float(s)
 
 
-print(float_parser("3.14"))
-print(float_parser(".5"))
-print(float_parser("5."))
-print(float_parser("   -0.25  "))
-print(float_parser("+12.0"))
+print(parse_float("3.14"))
+print(parse_float(".5"))
+print(parse_float("5."))
+print(parse_float("   -0.25  "))
+print(parse_float("+12.0"))
