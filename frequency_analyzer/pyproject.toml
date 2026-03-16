@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "frequency-analyzer"
+version = "0.1.0"
+description = "A simple text frequency analysis tool"
+authors = [
+    { name = "Gamliel" }
+]
+requires-python = ">=3.9"
+
+dependencies = []
