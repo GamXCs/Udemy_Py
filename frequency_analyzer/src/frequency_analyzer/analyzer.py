@@ -1,10 +1,27 @@
 import string
+from collections import Counter
 
 """
 Frequency Analyzer
 
 Provides tools for analyzing word and character frequencies in text.
 """
+
+
+# function to remove the header from gutenburg website
+def remove_gutenberg_header(text):
+
+    # look for the gutenberg header and end
+    start_marker = "*** START OF"
+    end_marker = "*** END OF"
+
+    # use split to cut off the header and footer
+    if start_marker in text:
+        text = text.split(start_marker, 1)[1]
+    if end_marker in text:
+        text = text.split(end_marker, 1)[0]
+
+    return text
 
 
 def word_frequency(text):
@@ -19,13 +36,4 @@ def word_frequency(text):
     # turn into a list of words
     words = text.split()
 
-    # create dictionary to store results
-    new_dict = {}
-
-    # loop through string and create a count
-    for word in words:
-        if word in new_dict:
-            new_dict[word] += 1
-        else:
-            new_dict[word] = 1
-    return new_dict
+    return Counter(words)
