@@ -1,4 +1,8 @@
-from frequency_analyzer.analyzer import remove_gutenberg_header, word_frequency
+from frequency_analyzer.analyzer import (
+    remove_gutenberg_header,
+    top_n_words,
+    word_frequency,
+)
 
 
 # helper function to load the data
@@ -13,7 +17,7 @@ def print_top_words(counts, title, n=10):
     print(f"\n{title}")
     print("-" * len(title))
 
-    for word, count in counts.most_common(n):
+    for word, count in top_n_words(counts, n):
         print(f"{word}: {count}")
 
 
